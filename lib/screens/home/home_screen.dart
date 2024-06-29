@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           SearchInput(
-            onChanged: (String value) {},
+            onChanged: _onChangedSearchInputOne,
           ),
           Expanded(
             child: GridView.builder(
@@ -105,5 +105,35 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  void _onChangedSearchInputOne(String value) {
+    if (value.isEmpty) {
+      currentsItems = items;
+    } else {
+      currentsItems = items.where((element) {
+        try {
+          return element.title
+                  .toLowerCase()
+                  .substring(0, value.length)
+                  .toLowerCase() ==
+              value.toLowerCase();
+        } catch (_) {
+          return false;
+        }
+      }).toList();
+    }
+    setState(() {});
+  }
+
+  void _onChangedSearchInputTwo(String value) {
+    if (value.isEmpty) {
+      currentsItems = items;
+    } else {
+      currentsItems = items.where((element) {
+        return element.title.toLowerCase().contains(value.toLowerCase());
+      }).toList();
+    }
+    setState(() {});
   }
 }
