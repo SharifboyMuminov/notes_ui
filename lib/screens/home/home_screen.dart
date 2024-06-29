@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:notesapp/data/models/notes/notes_model.dart';
 import 'package:notesapp/screens/home/widget/grid_view_item.dart';
+import 'package:notesapp/screens/home/widget/search_input.dart';
 import 'package:notesapp/utils/app_size.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,15 +27,28 @@ class _HomeScreenState extends State<HomeScreen> {
     NotesModel(color: Colors.lightBlueAccent, title: 'Probka на Цветном'),
   ];
 
+  List<NotesModel> currentsItems = [
+    NotesModel(color: Colors.redAccent, title: 'Savva'),
+    NotesModel(color: Colors.pinkAccent, title: 'Olluco'),
+    NotesModel(color: Colors.deepPurpleAccent, title: 'Lona'),
+    NotesModel(color: Colors.blue, title: 'Folk'),
+    NotesModel(color: Colors.lightBlueAccent, title: 'White Rabbit'),
+    NotesModel(color: Colors.green, title: 'Sage'),
+    NotesModel(color: Colors.orangeAccent, title: 'Maya'),
+    NotesModel(color: Colors.orange, title: 'Jun'),
+    NotesModel(color: Colors.deepPurple, title: 'Onset'),
+    NotesModel(color: Colors.lightBlueAccent, title: 'Probka на Цветном'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF373A40),
+      backgroundColor: const Color(0xFF31363F),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF373A40),
+        backgroundColor: const Color(0xFF31363F),
         leading: IconButton(
           onPressed: () {},
           icon: SvgPicture.asset(
@@ -68,18 +82,27 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: GridView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 13.we, vertical: 16.he),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 13.we,
-          mainAxisSpacing: 13.we,
-          childAspectRatio: 1.6,
-        ),
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          return GridViewItem(notesModel: items[index]);
-        },
+      body: Column(
+        children: [
+          SearchInput(
+            onChanged: (String value) {},
+          ),
+          Expanded(
+            child: GridView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 13.we, vertical: 16.he),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 13.we,
+                mainAxisSpacing: 13.we,
+                childAspectRatio: 1.6,
+              ),
+              itemCount: currentsItems.length,
+              itemBuilder: (context, index) {
+                return GridViewItem(notesModel: currentsItems[index]);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

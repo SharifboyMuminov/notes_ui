@@ -21,7 +21,6 @@ class GridViewItem extends StatelessWidget {
           colors: [
             notesModel.color,
             Colors.white,
-            Colors.white,
           ],
         ),
       ),
