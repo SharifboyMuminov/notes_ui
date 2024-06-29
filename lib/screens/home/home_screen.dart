@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:notesapp/data/models/notes/notes_model.dart';
+import 'package:notesapp/screens/home/widget/grid_view_item.dart';
 import 'package:notesapp/utils/app_size.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -77,18 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         itemCount: items.length,
         itemBuilder: (context, index) {
-          return Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.r),
-              color: Colors.blue,
-            ),
-            child: Center(
-              child: Text(
-                'Item $index',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          );
+          return GridViewItem(notesModel: items[index]);
         },
       ),
     );
