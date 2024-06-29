@@ -20,7 +20,7 @@ class GridViewItem extends StatelessWidget {
           end: Alignment.centerLeft,
           colors: [
             notesModel.color,
-            Colors.white,
+            notesModel.color.withOpacity(0.8),
           ],
         ),
       ),
